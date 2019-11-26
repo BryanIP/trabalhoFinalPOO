@@ -51,5 +51,55 @@ public class Pacote {
         
         return txt;
     }
+
+    public ArrayList<Cidade> getCidades() {
+        return cidades;
+    }
+
+    public void setCidades(ArrayList<Cidade> cidades) {
+        this.cidades = cidades;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+    public Date getDataSaida() {
+        return dataSaida;
+    }
+
+    public void setDataSaida(Date dataSaida) {
+        this.dataSaida = dataSaida;
+    }
+
+    public Date getDataChegada() {
+        return dataChegada;
+    }
+
+    public void setDataChegada(Date dataChegada) {
+        this.dataChegada = dataChegada;
+    }
+
+    public int getQtdDias() {
+        return qtdDias;
+    }
+
+    public void setQtdDias(int qtdDias) {
+        this.qtdDias = qtdDias;
+    }
+
+    public String getOutrosDetalhes() {
+        return outrosDetalhes;
+    }
+
+    public void setOutrosDetalhes(String outrosDetalhes) {
+        this.outrosDetalhes = outrosDetalhes;
+    }
+    
+    
     
 }

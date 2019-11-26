@@ -1,6 +1,9 @@
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -201,22 +204,32 @@ public class CadastrarViagens extends javax.swing.JFrame {
     }//GEN-LAST:event_diasActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        this.salvarActionPerformed(evt);
+        try {
+            // TODO add your handling code here:
+            this.catchForm();
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastrarViagens.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void catchForm() throws ParseException{
+        Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(ida.getText());
+        Date date2 = new SimpleDateFormat("dd/MM/yyyy").parse(volta.getText());
+        int qtdDias = Integer.parseInt(dias.getText());
+        Pacote p = new Pacote(codigo.getText(), null, Double.parseDouble(preco.getText()), date1,date2, qtdDias,resumo.getText());
+         this.dispose();
+        Inicial inicial = new Inicial();
+        inicial.receberViagens(p);
+        inicial.setVisible(true);
+        
+    }
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) throws Exception {
-        
-            private void salvarActionPerformed(java.awt.event.evt) {                                         
-        // TODO add your handling code here:
-        Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(ida.getText());
-        Pacote p = new Pacote(codigo.getText(), null, Double.parseDouble(preco.getText()), date1, Date.valueOf(volta.getText()), resumo.getText());
-    }  
+   
 
-        Pacote p = new Pacote("1", null, 100, null, null, 5);
+        Pacote p = new Pacote("1", null, 100, null, null, 5, null);
         Agencia a = new Agencia();
         a.setPacotes(p);
         /* Set the Nimbus look and feel */
