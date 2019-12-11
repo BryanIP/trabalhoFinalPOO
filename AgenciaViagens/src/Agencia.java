@@ -20,6 +20,11 @@ public class Agencia extends Empresa {
         super(cnpj, razaoSocial, nomeFantasia, inscricaoEstadual, inscricaoMunicipal, endereco, dataAbertura, matriz);
         this.codigo = codigo;
     }
+
+    public Agencia() {
+        super("", "", "", "", "", null, null, true);
+        this.codigo = 0;
+    }
     
     public void setPacotes(Pacote pacote) {
         this.pacotes.add(pacote);

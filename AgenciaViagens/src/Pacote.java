@@ -21,14 +21,16 @@ public class Pacote {
     private int qtdDias;
     private String outrosDetalhes;
 
-    public Pacote(String codigo, ArrayList<Cidade> cidades, double preco, Date dataSaida, Date dataChegada, int qtdDias) {
+    public Pacote(String codigo, ArrayList<Cidade> cidades, double preco, Date dataSaida, Date dataChegada, int qtdDias, String outrosDetalhes) {
         this.codigo = codigo;
         this.cidades = cidades;
         this.preco = preco;
         this.dataSaida = dataSaida;
         this.dataChegada = dataChegada;
         this.qtdDias = qtdDias;
+        this.outrosDetalhes = outrosDetalhes;
     }
+
 
     public String getCodigo() {
         return codigo;
@@ -49,5 +51,55 @@ public class Pacote {
         
         return txt;
     }
+
+    public ArrayList<Cidade> getCidades() {
+        return cidades;
+    }
+
+    public void setCidades(ArrayList<Cidade> cidades) {
+        this.cidades = cidades;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+    public Date getDataSaida() {
+        return dataSaida;
+    }
+
+    public void setDataSaida(Date dataSaida) {
+        this.dataSaida = dataSaida;
+    }
+
+    public Date getDataChegada() {
+        return dataChegada;
+    }
+
+    public void setDataChegada(Date dataChegada) {
+        this.dataChegada = dataChegada;
+    }
+
+    public int getQtdDias() {
+        return qtdDias;
+    }
+
+    public void setQtdDias(int qtdDias) {
+        this.qtdDias = qtdDias;
+    }
+
+    public String getOutrosDetalhes() {
+        return outrosDetalhes;
+    }
+
+    public void setOutrosDetalhes(String outrosDetalhes) {
+        this.outrosDetalhes = outrosDetalhes;
+    }
+    
+    
     
 }

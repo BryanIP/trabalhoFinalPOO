@@ -1,14 +1,24 @@
+
+import java.util.ArrayList;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Alunoinf_2
  */
 public class Inicial extends javax.swing.JFrame {
+
+    ListarViagens list = new ListarViagens();
+    CadastrarViagens cad = new CadastrarViagens();
+    ArrayList<Pacote> pacotes = new ArrayList<Pacote>();
+
+    public void receberViagens(Pacote viagens) {
+        pacotes.add(viagens);
+    }
 
     /**
      * Creates new form Inicial
@@ -82,8 +92,8 @@ public class Inicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-        ListarViagens list = new ListarViagens();
         list.setVisible(true);
+        list.receberViagens(pacotes);
         this.dispose();
     }//GEN-LAST:event_btnListarActionPerformed
 
@@ -92,9 +102,8 @@ public class Inicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        CadastrarViagens cad = new CadastrarViagens();
         cad.setVisible(true);
-        this.dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**
