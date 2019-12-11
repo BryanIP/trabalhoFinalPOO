@@ -75,16 +75,23 @@ public class ListarViagens extends javax.swing.JFrame {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.dispose();
-        Inicial inicial = new Inicial();
-        inicial.setVisible(true);
+        Inicial.inic.setVisible(true);
+//      Inicial inicial = new Inicial();
+//      inicial.setVisible(true);
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     public void receberViagens(ArrayList<Pacote> viagens) {
         ArrayList<Pacote> pacotes = viagens;
         DefaultTableModel list = (DefaultTableModel) jtPacotes.getModel();
-        Pacote p = pacotes.get(0);
-        Object[] dados = {p.getCodigo(), p.getCidades().indexOf(0), p.getDataSaida(), p.getDataChegada()};
-        list.addRow(dados);
+        if (list.getRowCount()>0) {
+            list.removeRow(list.getRowCount());
+        }
+        for (int i = 0; i<pacotes.size(); i++) {
+            Pacote p = pacotes.get(i);
+//          Object[] dados = {p.getCodigo(), p.getCidades().indexOf(0), p.getDataSaida(), p.getDataChegada()};
+            Object[] dados = {p.getCodigo(), (p.getCidades() != null ? p.getCidades().indexOf(i) : "Não informado"), p.getDataStr(p.getDataIda()), p.getDataStr(p.getDataVolta())};
+            list.addRow(dados);
+        }
     }
 
 

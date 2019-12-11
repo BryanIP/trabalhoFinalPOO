@@ -1,4 +1,5 @@
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -16,8 +17,8 @@ public class Pacote {
     private String codigo;
     private ArrayList<Cidade> cidades;
     private double preco;
-    private Date dataSaida;
-    private Date dataChegada;
+    private Date dataIda;
+    private Date dataVolta;
     private int qtdDias;
     private String outrosDetalhes;
 
@@ -25,8 +26,8 @@ public class Pacote {
         this.codigo = codigo;
         this.cidades = cidades;
         this.preco = preco;
-        this.dataSaida = dataSaida;
-        this.dataChegada = dataChegada;
+        this.dataIda = dataSaida;
+        this.dataVolta = dataChegada;
         this.qtdDias = qtdDias;
         this.outrosDetalhes = outrosDetalhes;
     }
@@ -42,7 +43,7 @@ public class Pacote {
     
     @Override
     public String toString() {
-        String txt = "Pacote #" + codigo + " Saída " + dataSaida + " Chegada " + dataChegada + "( " + qtdDias + " dias)";
+        String txt = "Pacote #" + codigo + " Saída " + dataIda + " Chegada " + dataVolta + "( " + qtdDias + " dias)";
         txt = txt + "\nCidades: \n";
         
         for (int i=0; i<cidades.size(); i++) {
@@ -68,20 +69,25 @@ public class Pacote {
         this.preco = preco;
     }
 
-    public Date getDataSaida() {
-        return dataSaida;
+    public Date getDataIda() {
+        return dataIda;
     }
 
-    public void setDataSaida(Date dataSaida) {
-        this.dataSaida = dataSaida;
+    public void setDataIda(Date dataIda) {
+        this.dataIda = dataIda;
     }
 
-    public Date getDataChegada() {
-        return dataChegada;
+    public Date getDataVolta() {
+        return dataVolta;
     }
 
-    public void setDataChegada(Date dataChegada) {
-        this.dataChegada = dataChegada;
+    public void setDataVolta(Date dataVolta) {
+        this.dataVolta = dataVolta;
+    }
+
+    public String getDataStr(Date data) {
+        SimpleDateFormat fmtDt = new SimpleDateFormat("dd/MM/yyyy");
+        return fmtDt.format(data);
     }
 
     public int getQtdDias() {

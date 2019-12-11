@@ -15,6 +15,7 @@ public class Inicial extends javax.swing.JFrame {
     ListarViagens list = new ListarViagens();
     CadastrarViagens cad = new CadastrarViagens();
     ArrayList<Pacote> pacotes = new ArrayList<Pacote>();
+    static Inicial inic = new Inicial();
 
     public void receberViagens(Pacote viagens) {
         pacotes.add(viagens);
@@ -94,6 +95,7 @@ public class Inicial extends javax.swing.JFrame {
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
         list.setVisible(true);
         list.receberViagens(pacotes);
+//      inic.dispose();
         this.dispose();
     }//GEN-LAST:event_btnListarActionPerformed
 
@@ -103,6 +105,7 @@ public class Inicial extends javax.swing.JFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         cad.setVisible(true);
+//      inic.setVisible(false);
         this.setVisible(false);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 

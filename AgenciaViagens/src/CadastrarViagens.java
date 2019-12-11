@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -45,7 +46,8 @@ public class CadastrarViagens extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         dias = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,10 +99,19 @@ public class CadastrarViagens extends javax.swing.JFrame {
 
         jLabel6.setText("Resumo");
 
-        jButton1.setText("Salvar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSalvarActionPerformed(evt);
+            }
+        });
+
+        btnVoltar.setText("Voltar");
+        btnVoltar.setMaximumSize(new java.awt.Dimension(63, 23));
+        btnVoltar.setMinimumSize(new java.awt.Dimension(63, 23));
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
             }
         });
 
@@ -130,12 +141,13 @@ public class CadastrarViagens extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dias, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(dias, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                            .addComponent(btnVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(resumo, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -172,7 +184,9 @@ public class CadastrarViagens extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dias, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                    .addComponent(btnVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -203,26 +217,52 @@ public class CadastrarViagens extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_diasActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         try {
             // TODO add your handling code here:
             this.catchForm();
+            this.limpaCampos();
         } catch (ParseException ex) {
             Logger.getLogger(CadastrarViagens.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        this.dispose();
+        Inicial.inic.setVisible(true);
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void catchForm() throws ParseException{
         Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(ida.getText());
         Date date2 = new SimpleDateFormat("dd/MM/yyyy").parse(volta.getText());
         int qtdDias = Integer.parseInt(dias.getText());
-        Pacote p = new Pacote(codigo.getText(), null, Double.parseDouble(preco.getText()), date1,date2, qtdDias,resumo.getText());
-         this.dispose();
-        Inicial inicial = new Inicial();
-        inicial.receberViagens(p);
-        inicial.setVisible(true);
+        Pacote p = new Pacote(codigo.getText(), null, Double.parseDouble(preco.getText()), date1, date2, qtdDias, resumo.getText());
+//      this.dispose();
+//      Inicial inicial = new Inicial();
+        Inicial.inic.receberViagens(p);
+//      inicial.setVisible(true);
         
     }
+    
+    private void limpaCampos() {
+        this.codigo.setText("");
+        this.preco.setText("");
+        this.ida.setText("");
+        this.volta.setText("");
+        this.dias.setText("");
+        this.resumo.setText("");
+
+/*
+        int count = this.getComponentCount();
+        for (int i = 0; i<count-1; i++) {
+            Object obj = this.getComponent(i);
+            if (obj.getClass().getName().equals("JTextField")) {
+                ((JTextField) obj).setText("");
+            }
+        }
+*/        
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -264,10 +304,11 @@ public class CadastrarViagens extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JTextField codigo;
     private javax.swing.JTextField dias;
     private javax.swing.JTextField ida;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
