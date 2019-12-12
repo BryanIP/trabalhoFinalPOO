@@ -15,14 +15,14 @@ import java.util.Date;
  */
 public class Pacote {
     private String codigo;
-    private ArrayList<Cidade> cidades;
+    private String cidades;
     private double preco;
     private Date dataIda;
     private Date dataVolta;
     private int qtdDias;
     private String outrosDetalhes;
 
-    public Pacote(String codigo, ArrayList<Cidade> cidades, double preco, Date dataSaida, Date dataChegada, int qtdDias, String outrosDetalhes) {
+    public Pacote(String codigo, String cidades, double preco, Date dataSaida, Date dataChegada, int qtdDias, String outrosDetalhes) {
         this.codigo = codigo;
         this.cidades = cidades;
         this.preco = preco;
@@ -44,20 +44,16 @@ public class Pacote {
     @Override
     public String toString() {
         String txt = "Pacote #" + codigo + " Saída " + dataIda + " Chegada " + dataVolta + "( " + qtdDias + " dias)";
-        txt = txt + "\nCidades: \n";
-        
-        for (int i=0; i<cidades.size(); i++) {
-            txt = txt + cidades.get(i) + "\n";
-        }
+        txt = txt + "\nCidades: " + cidades;
         
         return txt;
     }
 
-    public ArrayList<Cidade> getCidades() {
+    public String getCidades() {
         return cidades;
     }
 
-    public void setCidades(ArrayList<Cidade> cidades) {
+    public void setCidades(String cidades) {
         this.cidades = cidades;
     }
 

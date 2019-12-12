@@ -48,8 +48,22 @@ public class ListarViagens extends javax.swing.JFrame {
             new String [] {
                 "Codigo", "Destino", "Data Ida", "Data Chegada"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jtPacotes);
+        if (jtPacotes.getColumnModel().getColumnCount() > 0) {
+            jtPacotes.getColumnModel().getColumn(0).setResizable(false);
+            jtPacotes.getColumnModel().getColumn(1).setResizable(false);
+            jtPacotes.getColumnModel().getColumn(2).setResizable(false);
+            jtPacotes.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -58,8 +72,8 @@ public class ListarViagens extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnVoltar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                .addContainerGap(329, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,7 +103,7 @@ public class ListarViagens extends javax.swing.JFrame {
         for (int i = 0; i<pacotes.size(); i++) {
             Pacote p = pacotes.get(i);
 //          Object[] dados = {p.getCodigo(), p.getCidades().indexOf(0), p.getDataSaida(), p.getDataChegada()};
-            Object[] dados = {p.getCodigo(), (p.getCidades() != null ? p.getCidades().indexOf(i) : "Não informado"), p.getDataStr(p.getDataIda()), p.getDataStr(p.getDataVolta())};
+            Object[] dados = {p.getCodigo(), (p.getCidades() != null ? p.getCidades() : "Não informado"), p.getDataStr(p.getDataIda()), p.getDataStr(p.getDataVolta())};
             list.addRow(dados);
         }
     }
