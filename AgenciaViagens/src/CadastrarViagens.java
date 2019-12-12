@@ -1,4 +1,5 @@
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -230,6 +231,13 @@ public class CadastrarViagens extends javax.swing.JFrame {
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.dispose();
         Inicial.inic.setVisible(true);
+        
+        Agencia ag = new Agencia();
+        try {
+            ag.salvarEmTexto();
+        } catch (IOException ex) {
+            Logger.getLogger(CadastrarViagens.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void catchForm() throws ParseException{

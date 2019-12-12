@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.io.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,7 +13,7 @@ import java.util.Date;
  *
  * @author Bryan
  */
-public class Agencia extends Empresa {
+public class Agencia extends Empresa implements Serializable {
     private int codigo;
     private ArrayList<Pacote> pacotes;
 
@@ -46,6 +47,30 @@ public class Agencia extends Empresa {
     
     public ArrayList<Pacote> getPacotes() {
         return pacotes;
+    }
+    
+    public boolean salvarEmTexto() throws IOException, FileNotFoundException {
+        int i = 0;
+        
+        try {
+            File file = new File(this.getClass().getSimpleName()+".txt");
+            FileOutputStream fileOS = new FileOutputStream(file);
+            ObjectOutputStream objOS = new ObjectOutputStream(fileOS);
+            String nomeArq = file.getAbsolutePath();
+
+            objOS.writeObject(this);
+            objOS.flush();
+            objOS.close();
+            
+            fileOS.flush();
+            fileOS.close();
+            
+            System.out.println("GRAVAÇÃO CONCLUÍDA!!!\n" + nomeArq);
+        } catch (Exception e) {
+            
+        }
+
+        return true;
     }
     
 }
