@@ -17,7 +17,7 @@ public class Agencia extends Empresa implements Serializable {
     private int codigo;
     private ArrayList<Pacote> pacotes;
 
-    public Agencia(int codigo, String cnpj, String razaoSocial, String nomeFantasia, String inscricaoEstadual, String inscricaoMunicipal, Endereco endereco, Date dataAbertura, boolean matriz) {
+    public Agencia(int codigo, String cnpj, String razaoSocial, String nomeFantasia, String inscricaoEstadual, String inscricaoMunicipal, Endereco endereco, String dataAbertura, boolean matriz) {
         super(cnpj, razaoSocial, nomeFantasia, inscricaoEstadual, inscricaoMunicipal, endereco, dataAbertura, matriz);
         this.codigo = codigo;
     }

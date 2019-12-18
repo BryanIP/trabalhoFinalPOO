@@ -17,11 +17,17 @@ public class Inicial extends javax.swing.JFrame {
 
     ListarViagens list = new ListarViagens();
     CadastrarViagens cad = new CadastrarViagens();
+    CadastrarAgencia cadA = new CadastrarAgencia();
     ArrayList<Pacote> pacotes = new ArrayList<Pacote>();
+    ArrayList<Agencia> agencias = new ArrayList<Agencia>();
     static Inicial inic = new Inicial();
 
     public void receberViagens(Pacote viagens) {
         pacotes.add(viagens);
+    }
+
+    public void receberAgencias(Agencia agencia) {
+        agencias.add(agencia);
     }
 
     /**
@@ -42,6 +48,7 @@ public class Inicial extends javax.swing.JFrame {
 
         btnListar = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
+        btnCadastrarAgencia = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,6 +68,13 @@ public class Inicial extends javax.swing.JFrame {
             }
         });
 
+        btnCadastrarAgencia.setText("Cadastrar Agência");
+        btnCadastrarAgencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarAgenciaActionPerformed(evt);
+            }
+        });
+
         btnCadastrar.setText("Cadastrar Viagem");
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,20 +90,23 @@ public class Inicial extends javax.swing.JFrame {
                 .addContainerGap(130, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCadastrarAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(128, 128, 128))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(btnCadastrarAgencia, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -106,7 +123,14 @@ public class Inicial extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
+    private void btnCadastrarAgenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarAgenciaActionPerformed
+        cadA.setVisible(true);
+//      inic.setVisible(false);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCadastrarAgenciaActionPerformed
+
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        // TODO add your handling code here:
         cad.setVisible(true);
 //      inic.setVisible(false);
         this.setVisible(false);
@@ -149,6 +173,7 @@ public class Inicial extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnCadastrarAgencia;
     private javax.swing.JButton btnListar;
     private javax.swing.JButton btnPesquisar;
     // End of variables declaration//GEN-END:variables

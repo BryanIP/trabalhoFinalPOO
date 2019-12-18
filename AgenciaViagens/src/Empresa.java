@@ -18,10 +18,10 @@ public class Empresa {
     private String inscricaoEstadual;
     private String inscricaoMunicipal;
     private Endereco endereco;
-    private Date dataAbertura;
+    private String dataAbertura;
     private boolean matriz;
 
-    public Empresa(String cnpj, String razaoSocial, String nomeFantasia, String inscricaoEstadual, String inscricaoMunicipal, Endereco endereco, Date dataAbertura, boolean matriz) {
+    public Empresa(String cnpj, String razaoSocial, String nomeFantasia, String inscricaoEstadual, String inscricaoMunicipal, Endereco endereco, String dataAbertura, boolean matriz) {
         this.cnpj = cnpj;
         this.razaoSocial = razaoSocial;
         this.nomeFantasia = nomeFantasia;
