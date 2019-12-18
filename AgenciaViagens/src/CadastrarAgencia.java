@@ -329,10 +329,34 @@ public class CadastrarAgencia extends javax.swing.JFrame {
         boolean mat = matriz.getText() == "1" ? true : false;
         Agencia a = new Agencia(cod, cnpj.getText(), razaoSocial.getText(), nomeFantasia.getText(), inscricaoEstadual.getText(), inscricaoMunicipal.getText(), e, dataAbertura.getText(), mat);
 
-        Inicial.inic.receberAgencias(a);
-
+//      Inicial.inic.receberAgencias(a);
+        if (validaCadastro(a))
+            Inicial.inic.agencias.add(a);
     }
 
+    private boolean validaCadastro(Agencia ag) {
+        boolean ok = true;
+        for (int i = 0; i < Inicial.inic.agencias.size(); i++) {
+            ok = ag.getCodigo() != Inicial.inic.agencias.get(i).getCodigo()
+                && ag.getCnpj() != Inicial.inic.agencias.get(i).getCnpj();
+
+            if (!ok)
+                break;
+        }
+        
+        if (ok) {
+            ok = !"".equals(codigo.getText()) && !"".equals(razaoSocial.getText()) 
+                && !"".equals(logradouro.getText()) && !"".equals(bairro.getText())
+                && !"".equals(cidade.getText()) && !"".equals(estado.getText());
+            
+            if (!ok)
+                System.out.println("Preencha todos os campos obrigatórios!\nCódigo, Razão Social, Logradouro, Bairro, Cidade e Estado.");
+        } else
+            System.out.println("Agência já cadastrada!");
+        
+        return ok;
+    }
+    
     private void limpaCampos() {
         this.codigo.setText("");
         this.razaoSocial.setText("");
@@ -350,7 +374,6 @@ public class CadastrarAgencia extends javax.swing.JFrame {
         this.bairro.setText("");
         this.cidade.setText("");
         this.estado.setText("");
-
     }
 
     /**

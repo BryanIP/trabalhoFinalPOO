@@ -1,5 +1,6 @@
 
 //import java.io.IOException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +21,7 @@ public class Inicial extends javax.swing.JFrame {
     CadastrarAgencia cadA = new CadastrarAgencia();
     ArrayList<Pacote> pacotes = new ArrayList<Pacote>();
     ArrayList<Agencia> agencias = new ArrayList<Agencia>();
+    Agencia agencia = new Agencia();
     static Inicial inic = new Inicial();
 
     public void receberViagens(Pacote viagens) {
@@ -114,8 +116,7 @@ public class Inicial extends javax.swing.JFrame {
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
         list.setVisible(true);
-        list.receberViagens(pacotes);
-//      inic.dispose();
+        list.receberViagens(agencia.getPacotes());
         this.dispose();
     }//GEN-LAST:event_btnListarActionPerformed
 
@@ -130,9 +131,7 @@ public class Inicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarAgenciaActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        // TODO add your handling code here:
         cad.setVisible(true);
-//      inic.setVisible(false);
         this.setVisible(false);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
@@ -167,7 +166,15 @@ public class Inicial extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Inicial().setVisible(true);
-            }
+
+                try {
+                    inic.agencia.carregarObj();
+                } catch (IOException ex) {
+                    Logger.getLogger(Inicial.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Inicial.class.getName()).log(Level.SEVERE, null, ex);
+                }
+           }
         });
     }
 

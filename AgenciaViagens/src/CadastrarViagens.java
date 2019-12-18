@@ -247,13 +247,21 @@ public class CadastrarViagens extends javax.swing.JFrame {
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.dispose();
         Inicial.inic.setVisible(true);
-        
-        Agencia ag = new Agencia();
-        try {
-            ag.salvarEmTexto();
-        } catch (IOException ex) {
-            Logger.getLogger(CadastrarViagens.class.getName()).log(Level.SEVERE, null, ex);
+
+/*        
+        boolean ok = !codigo.getText().isEmpty() && !cidades.getText().isEmpty() 
+                && !preco.getText().isEmpty() && !ida.getText().isEmpty()
+                && !volta.getText().isEmpty();
+
+        if (ok) {
+            Agencia ag = new Agencia();
+            try {
+                ag.salvarObjEmTexto();
+            } catch (IOException ex) {
+                Logger.getLogger(CadastrarViagens.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+*/        
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void cidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cidadesActionPerformed
@@ -265,16 +273,14 @@ public class CadastrarViagens extends javax.swing.JFrame {
         Date date2 = new SimpleDateFormat("dd/MM/yyyy").parse(volta.getText());
         int qtdDias = Integer.parseInt(dias.getText());
         Pacote p = new Pacote(codigo.getText(), cidades.getText(), Double.parseDouble(preco.getText()), date1, date2, qtdDias, resumo.getText());
-//      this.dispose();
-//      Inicial inicial = new Inicial();
-        Inicial.inic.receberViagens(p);
-//      inicial.setVisible(true);
-        
+//      Inicial.inic.receberViagens(p);
+        Inicial.inic.agencia.setPacotes(p);
     }
     
     private void limpaCampos() {
         this.codigo.setText("");
         this.preco.setText("");
+        this.cidades.setText("");
         this.ida.setText("");
         this.volta.setText("");
         this.dias.setText("");
