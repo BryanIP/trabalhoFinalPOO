@@ -1,7 +1,7 @@
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+//import java.text.SimpleDateFormat;
+//import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -309,6 +309,8 @@ public class CadastrarAgencia extends javax.swing.JFrame {
             this.limpaCampos();
         } catch (ParseException ex) {
             Logger.getLogger(CadastrarViagens.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidDataException ex) {
+            Logger.getLogger(CadastrarAgencia.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_btnSalvarAgenciaActionPerformed
@@ -322,7 +324,7 @@ public class CadastrarAgencia extends javax.swing.JFrame {
         Inicial.inic.setVisible(true);
     }//GEN-LAST:event_btnVoltarActionPerformed
 
-    private void catchForm() throws ParseException {
+    private void catchForm() throws ParseException, InvalidDataException {
         Endereco e = new Endereco(logradouro.getText(), numero.getText(), complemento.getText(), cep.getText(), bairro.getText(), cidade.getText(), estado.getText());
 
         int cod = Integer.parseInt(codigo.getText());
@@ -334,7 +336,7 @@ public class CadastrarAgencia extends javax.swing.JFrame {
             Inicial.inic.agencias.add(a);
     }
 
-    private boolean validaCadastro(Agencia ag) {
+    private boolean validaCadastro(Agencia ag) throws InvalidDataException {
         boolean ok = true;
         for (int i = 0; i < Inicial.inic.agencias.size(); i++) {
             ok = ag.getCodigo() != Inicial.inic.agencias.get(i).getCodigo()
@@ -350,9 +352,9 @@ public class CadastrarAgencia extends javax.swing.JFrame {
                 && !"".equals(cidade.getText()) && !"".equals(estado.getText());
             
             if (!ok)
-                System.out.println("Preencha todos os campos obrigatórios!\nCódigo, Razão Social, Logradouro, Bairro, Cidade e Estado.");
+                throw new InvalidDataException("Preencha todos os campos obrigatórios!\nCódigo, Razão Social, Logradouro, Bairro, Cidade e Estado.");
         } else
-            System.out.println("Agência já cadastrada!");
+            throw new InvalidDataException("Agência já cadastrada!");
         
         return ok;
     }

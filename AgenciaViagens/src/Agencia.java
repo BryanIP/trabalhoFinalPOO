@@ -14,18 +14,21 @@ import java.io.*;
  * @author Bryan
  */
 public class Agencia extends Empresa implements Serializable {
+    private static int count = 0;
     private int codigo;
     private ArrayList<Pacote> pacotes;
 
     public Agencia(int codigo, String cnpj, String razaoSocial, String nomeFantasia, String inscricaoEstadual, String inscricaoMunicipal, Endereco endereco, String dataAbertura, boolean matriz) {
         super(cnpj, razaoSocial, nomeFantasia, inscricaoEstadual, inscricaoMunicipal, endereco, dataAbertura, matriz);
-        this.codigo = codigo;
+        count++;
+        this.codigo = count;
         this.pacotes = new ArrayList<>();
     }
 
     public Agencia() {
         super("", "", "", "", "", null, null, true);
-        this.codigo = 0;
+        count++;
+        this.codigo = count;
         this.pacotes = new ArrayList<>();
     }
     
@@ -95,8 +98,6 @@ public class Agencia extends Empresa implements Serializable {
 
     
     public boolean salvarObjEmTexto() throws IOException, FileNotFoundException {
-        int i = 0;
-        
         try {
             File f = new File(this.getClass().getSimpleName()+"-OBJ.txt");
             FileOutputStream fOS = new FileOutputStream(f);

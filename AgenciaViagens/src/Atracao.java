@@ -12,6 +12,7 @@ import java.util.Date;
  * @author Bryan
  */
 public class Atracao {
+    private static int count;
     private int codigo;
     private String tipo;
     private String nome;
@@ -19,7 +20,8 @@ public class Atracao {
     private Date data;
 
     public Atracao(int codigo, String tipo, String nome, double preco, Date data) {
-        this.codigo = codigo;
+        count++;
+        this.codigo = count;
         this.tipo = tipo;
         this.nome = nome;
         this.preco = preco;

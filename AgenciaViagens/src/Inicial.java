@@ -1,6 +1,6 @@
 
 //import java.io.IOException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -54,6 +54,14 @@ public class Inicial extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         btnListar.setText("Lista de Viagens");
         btnListar.setToolTipText("");
@@ -134,6 +142,50 @@ public class Inicial extends javax.swing.JFrame {
         cad.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        try {
+            File f = new File(this.getClass().getSimpleName()+"-OBJ.txt");
+            FileOutputStream fOS = new FileOutputStream(f);
+            ObjectOutputStream oOS = new ObjectOutputStream(fOS);
+
+            oOS.writeObject(agencias);
+            oOS.flush();
+            oOS.close();
+            
+            fOS.flush();
+            fOS.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Inicial.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+/*        
+        Object[] options = { "Encerrar", "Cancelar" };
+        if (JOptionPane.showOptionDialog(null, "Deseja encerrar a Aplicação?", "Confirmação", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]) == 0) {
+        }
+*/        
+
+    }//GEN-LAST:event_formWindowClosing
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+/*
+        try {
+            File f = new File(this.getClass().getSimpleName()+".txt");
+
+            if (f.exists()) {
+                InputStream iS = new FileInputStream(f); // abre o arquivo para leitura
+                ObjectInputStream oIS = new ObjectInputStream(iS);
+
+                agencias = (ArrayList<Agencia>) oIS.readObject();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Inicial.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Inicial.class.getName()).log(Level.SEVERE, null, ex);
+        }
+*/
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
